@@ -44,15 +44,31 @@ export const constantRoutes = [
   },
 
   {
-    path: '/',
+    path: '/teacher',
     component: Layout,
-    redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
-    }]
+    redirect: '/teacher/table',
+    children: [
+      {
+      path: 'table',
+      name: '教师',
+      component: () => import('@/views/teacher'),
+      meta: { title: '教师', icon: 'dashboard' }
+    },
+      {
+        path: 'add',
+        name: '添加教师',
+        component: () => import('@/views/teacher/addTeacher'),
+        meta: { title: '添加教师', icon: 'dashboard' }
+      },
+      {
+        path: 'edit/:id',
+        name: '修改教师',
+        component: () => import('@/views/teacher/addTeacher'),
+        meta: { title: '修改教师', icon: 'dashboard' },
+        hidden:true
+      }
+
+    ]
   },
 
   {
@@ -84,7 +100,7 @@ export const constantRoutes = [
       {
         path: 'index',
         name: 'Form',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/teacher/index'),
         meta: { title: 'Form', icon: 'form' }
       }
     ]
