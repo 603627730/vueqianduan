@@ -3,14 +3,20 @@
     <el-table
       :data="teacherList"
       style="width: 100%">
-      <el-table-column>
+
+      <el-table-column label="序号">
         <template slot-scope="scope">
-            <el-avatar shape="square" :size="100"  :src="scope.row.avatar"></el-avatar>
+          {{ scope.$index +1}}
+        </template>
+      </el-table-column>
+      <el-table-column label="avator">
+        <template slot-scope="scope" >
+          <el-avatar :src="scope.row.avatar"></el-avatar>
         </template>
       </el-table-column>
       <el-table-column
         prop="name"
-        label="career"
+        label="name"
         width="180">
       </el-table-column>
       <el-table-column
@@ -25,12 +31,12 @@
       </el-table-column>
       <el-table-column
         prop="level"
-        label="level">
+        label="level" width="100">
       </el-table-column>
       <el-table-column>
         <template slot-scope="scope">
-          <el-button type="primary" @click="editTeacher(scope.row.id)">编辑</el-button>
-          <el-button type="danger" @click="deleteTeacher(scope.row.id)">删除</el-button>
+          <el-button type="primary" @click="editTeacher(scope.row.id)"  width="100">编辑</el-button>
+          <el-button type="danger" @click="deleteTeacher(scope.row.id)"  width="180">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

@@ -1,13 +1,13 @@
 import request from '@/utils/request'
 
 export default  {
-  addPhoto(photo){
+  getOntTwoCourse(){
     return request({
-      url: '/eduoss/fileoss',
-      method: 'post',
-      data:photo,
+      url: '/serviceedu/edu-subject/getAllsubject',
+      method: 'get',
       baseURL: 'http://139.196.6.43:9001'
     })
-  }
+  },
+
 
 }

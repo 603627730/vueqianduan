@@ -10,57 +10,51 @@
     >
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
-          {{ scope.$index }}
+          {{ scope.$index +1}}
         </template>
       </el-table-column>
-      <el-table-column label="Title">
+      <el-table-column label="课程封面" width="110" align="center">
         <template slot-scope="scope">
-          {{ scope.row.title }}
+          <el-avatar :src="scope.row.cover"></el-avatar>
         </template>
       </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
+      <el-table-column label="课程名称" width="110" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          <span>{{ scope.row.title }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
+      <el-table-column label="授课教师" width="110" align="center">
         <template slot-scope="scope">
-          {{ scope.row.pageviews }}
+          <span>{{ scope.row.teacherName }}</span>
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
+      <el-table-column label="课程价格" width="110" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+          <span>{{ scope.row.price }}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
+      <el-table-column label="所属一级分类" width="110" align="center">
         <template slot-scope="scope">
-          <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
+          <span>{{ scope.row.subjectLevelOne }}</span>
         </template>
       </el-table-column>
+      <el-table-column label="所属二级分类" width="110" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.subjectLevelTwo }}</span>
+        </template>
+      </el-table-column>
+
+
     </el-table>
   </div>
 </template>
 
 <script>
-import { getList } from '@/api/table'
-
+import edu_courseAPI from "@/api/edu/edu_course";
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
-      list: null,
-      listLoading: true
+      list: [],
     }
   },
   created() {
@@ -68,10 +62,9 @@ export default {
   },
   methods: {
     fetchData() {
-      this.listLoading = true
-      getList().then(response => {
-        this.list = response.data.items
-        this.listLoading = false
+      edu_courseAPI.getAllcourse().then(response=>{
+        console.log(response.data.list)
+        this.list=response.data.list
       })
     }
   }

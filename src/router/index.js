@@ -42,11 +42,17 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
+  {
+    path: '/',
+    component: () => import('@/layout/index'),
+    hidden: true
+  },
 
   {
     path: '/teacher',
     component: Layout,
     redirect: '/teacher/table',
+    meta: { title: '教师', icon: 'el-icon-s-help' },
     children: [
       {
       path: 'table',
@@ -76,20 +82,47 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    meta: { title: '课程', icon: 'el-icon-s-help' },
     children: [
       {
         path: 'table',
         name: 'Table',
         component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        meta: { title: '课程列表', icon: 'table' }
       },
       {
         path: 'tree',
         name: 'Tree',
         component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
+        meta: { title: '课程树', icon: 'tree' }
+      },
+      {
+        path: 'step1',
+        name: 'Tree',
+        component: () => import('@/views/table/addCourse1'),
+        meta: { title: '添加课程', icon: 'tree' }
+      },{
+        path: 'step1/:id',
+        name: 'Tree',
+        component: () => import('@/views/table/addCourse1'),
+        meta: { title: '添加课程', icon: 'tree' },
+        hidden: true
+      },
+      {
+        path: 'step2/:id',
+        name: 'Tree',
+        component: () => import('@/views/table/addCourse2'),
+        meta: { title: '添加课程', icon: 'tree' },
+        hidden: true
+      },
+      {
+        path: 'step3/:id',
+        name: 'Tree',
+        component: () => import('@/views/table/addCourse3'),
+        meta: { title: '添加课程', icon: 'tree' },
+        hidden: true
+      },
+
     ]
   },
 
