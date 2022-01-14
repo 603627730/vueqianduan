@@ -55,6 +55,7 @@ export default  {
       url: '/serviceedu/edu-teacher/getAllTeacherNameAndId',
       method: 'get',
       baseURL: 'http://139.196.6.43:9001'
+
     })
   },
 
